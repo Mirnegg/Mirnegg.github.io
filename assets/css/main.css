@@ -1718,8 +1718,8 @@ input, select, textarea {
 	right: 15%;
   }
   #planet-contact {
-	bottom: 20%;
-	right: 25%;
+	top: 5%;
+	right: 43%;
   }
   
   /* Planet images */
@@ -1737,26 +1737,49 @@ input, select, textarea {
 
 /* --- Mobile: stack the planets instead of absolutely positioning them --- */
 @media screen and (max-width: 480px) {
+	/* 1) teardown your absolute layout and switch to a simple column */
 	.planet-container {
+	  position: static !important;   /* drop out of absolute context */
+	  width: 100%;
 	  display: flex;
-	  flex-direction: column;    /* stack vertically */
-	  align-items: center;       /* center horizontally */
-	  position: static;          /* drop out of absolute context */
-	  height: auto;              /* let it grow with its content */
-	  padding: 1rem 0;           /* give a little breathing room */
+	  flex-direction: column;
+	  align-items: center;
+	  padding: 1.5rem 0;
+	  gap: 2rem;                     /* even spacing between each planet */
 	}
   
+	/* 2) make each “planet” a centered column of icon + label */
 	.planet {
-	  position: relative;        /* back to normal flow */
-	  top: auto; left: auto;     /* reset any top/right offsets */
-	  right: auto; bottom: auto;
-	  margin: 0.5rem 0;          /* vertical spacing between them */
-	  transform: none;           /* undo any earlier transforms */
+	  position: static !important;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  text-align: center;
+	  margin: 0;
+	  transform: none !important;
 	}
   
+	/* 3) shrink the icons for small screens */
 	.planet img {
-	  width: 120px;              /* slightly shrink them if you like */
-	  height: 120px;
+	  width: 100px;
+	  height: 100px;
+	  margin-bottom: 0.5rem;
 	}
+  
+	/* 4) style your label and add that dotted underline */
+	.planet span {
+	  display: block;
+	  font-weight: bold;
+	  margin-top: 0.25rem;
+	  padding-bottom: 0.5rem;
+	  width: 60%;
+	  border-bottom: 1px dashed currentColor;
+	}
+  
+	/* 5) fix the read-order so it goes About → Research → Misc */
+	/*    (your HTML is currently misc/research/about)    */
+	#planet-bio     { order: 1; }   /* About */
+	#planet-contact { order: 2; }   /* Research */
+	#planet-research{ order: 3; }   /* Misc */
   }
   
