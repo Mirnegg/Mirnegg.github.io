@@ -1739,13 +1739,18 @@ input, select, textarea {
 @media screen and (max-width: 480px) {
 	/* 1) teardown your absolute layout and switch to a simple column */
 	.planet-container {
-	  position: static !important;   /* drop out of absolute context */
-	  width: 100%;
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  padding: 1.5rem 0;
-	  gap: 2rem;                     /* even spacing between each planet */
+		position: static !important;
+		width: 100%;
+		/* vendor‐prefixed flex for older browsers */
+		display: -webkit-flex;    /* Safari, older Android */
+		display: -ms-flexbox;     /* IE10 */
+		display: flex;            /* modern */
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		align-items: center;
+		padding: 1.5rem 0;
+		gap: 2rem;
 	}
   
 	/* 2) make each “planet” a centered column of icon + label */
@@ -1778,8 +1783,8 @@ input, select, textarea {
   
 	/* 5) fix the read-order so it goes About → Research → Misc */
 	/*    (your HTML is currently misc/research/about)    */
-	#planet-bio     { order: 1; }   /* About */
-	#planet-contact { order: 2; }   /* Research */
-	#planet-research{ order: 3; }   /* Misc */
+	#planet-bio     { -webkit-order: 1; order: 1; }   /* About */
+	#planet-contact { -webkit-order: 2; order: 2; }   /* Research */
+	#planet-research{ -webkit-order: 3; order: 3; }   /* Misc */
   }
   
