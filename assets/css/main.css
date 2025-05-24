@@ -1778,8 +1778,8 @@ input, select, textarea {
   
 	/* 5) fix the read-order so it goes About → Research → Misc */
 	/*    (your HTML is currently misc/research/about)    */
-	#planet-bio     { order: 3; }   /* About */
+	#planet-bio     { order: 1; }   /* About */
 	#planet-contact { order: 2; }   /* Research */
-	#planet-research{ order: 1; }   /* Misc */
+	#planet-research{ order: 3; }   /* Misc */
   }
   
